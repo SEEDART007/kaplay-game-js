@@ -87,7 +87,7 @@ const player = k.add([
         speed: 1.5, // speed up the sound
         loop:false // loop the sound
       });
-      player.jumpForce=1300;
+      player.jumpForce=1100;
       player.jump()
     }
   })
@@ -97,8 +97,13 @@ const player = k.add([
   })
   
 
- 
-
+ //on touch
+player.onTouchStart(()=>{
+  if(player.isGrounded()){
+    player.jumpForce=1100
+    player.jump()
+  }
+})
   //gameover scene
  k.scene("gameover",()=>{
   backgroundMusic.stop();
@@ -148,7 +153,7 @@ const counterUI = k.text("0")
 
  const spawnBlocks=()=>{ 
    //winner scene 
-if(score>30){
+if(score>10){
   k.go("winner")
 }
  
@@ -202,6 +207,7 @@ if(score>30){
       ]);
     });
     k.add([k.text(`Your Score: ${score}`),k.pos(5,20)])
+    k.add([k.text(`You've successfully passed all the exams,\nnow get ready for your 9-5 job with $10 per month`),k.pos(5,70)])
   })
 
   
