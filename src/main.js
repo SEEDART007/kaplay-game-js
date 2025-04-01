@@ -1,9 +1,12 @@
 let counter = 0;
 import kaplay from "kaplay";
+
 const k = kaplay({
   background: [0, 0, 0],
   burp:true
 });
+
+
 
 //songs loaders 
 k.loadSound("backsnd","/backsnd.mp3")
@@ -11,6 +14,7 @@ k.loadSound("jumpsnd","/jumpsnd.mp3")
 k.loadSound("hurt","/hurt.mp3")
 k.loadSound("lose","/lose.wav")
 k.loadSound("level2","/level2.mp3")
+k.loadSound("victory","/victory.mp3")
 
 //images loader 
 k.loadSprite("1st","/1st.png")
@@ -91,6 +95,9 @@ const player = k.add([
   player.onExitScreen(()=>{
     k.go("gameover")
   })
+  
+
+ 
 
   //gameover scene
  k.scene("gameover",()=>{
@@ -137,7 +144,14 @@ const scoreLabel = add([text(), pos(50, 15)]);
 //counter
 const counterUI = k.text("0")
 
+
+
  const spawnBlocks=()=>{ 
+   //winner scene 
+if(score>30){
+  k.go("winner")
+}
+ 
    if(counter<30){
    add([text("level:"+levels[0]),pos(50,50),"firstlev"])
    globalThis.level="1st";
@@ -147,7 +161,6 @@ const counterUI = k.text("0")
     globalThis.level="2nd"
     const sprites2 = ["4th","5th","sixth"]
     globalThis.obsDisplay=  sprites2[Math.floor(Math.random()*sprites2.length)]
-
     k.destroyAll("firstlev")
     add([text("level:"+levels[1]),pos(50,50),"seclev"])
    }else if(counter>80){
@@ -156,7 +169,6 @@ const counterUI = k.text("0")
     globalThis.obsDisplay=  sprites3[Math.floor(Math.random()*sprites3.length)]
      k.destroyAll("seclev") 
      add([text("level:"+levels[2]),pos(50,50)])
-
    }
     counter++;
     score++;
@@ -174,5 +186,26 @@ const counterUI = k.text("0")
   });
   }
   spawnBlocks()
+  k.scene("winner",()=>{
+    backgroundMusic.stop()//stops the background music
+    play("victory",{
+      volume: 2, // set the volume to 200%
+      speed: 1, // speed up the sound
+      loop:false // loop the sound
+    })
+    k.loadSprite("winner", "/winner.webp").then(() => {
+      k.add([
+        k.sprite("winner"),
+        k.center(),
+        k.scale(2), // Scale to fit screen
+        k.layer("bg"),
+      ]);
+    });
+    k.add([k.text(`Your Score: ${score}`),k.pos(5,20)])
+  })
+
+  
+
+
 
 
