@@ -5,27 +5,28 @@ const k = kaplay({
   background: [0, 0, 0],
   burp:true
 });
+k.loadRoot("./")
 
 
 
 //songs loaders 
-k.loadSound("backsnd","/backsnd.mp3")
-k.loadSound("jumpsnd","/jumpsnd.mp3")
-k.loadSound("hurt","/hurt.mp3")
-k.loadSound("lose","/lose.wav")
-k.loadSound("level2","/level2.mp3")
-k.loadSound("victory","/victory.mp3")
+k.loadSound("backsnd","backsnd.mp3")
+k.loadSound("jumpsnd","jumpsnd.mp3")
+k.loadSound("hurt","hurt.mp3")
+k.loadSound("lose","lose.wav")
+k.loadSound("level2","level2.mp3")
+k.loadSound("victory","victory.mp3")
 
 //images loader 
-k.loadSprite("1st","/1st.png")
-k.loadSprite("2nd","/2nd.webp")
- k.loadSprite("3rd","/3rd.png")
- k.loadSprite("4th","/4th.png")
- k.loadSprite("5th","/5th.webp")
- k.loadSprite("sixth","/sixth.png")
- k.loadSprite("upsc","/upsc.jpg")
- k.loadSprite("7th","/7th.jpeg")
- k.loadSprite("8th","/8th.png")
+k.loadSprite("1st","1st.png")
+k.loadSprite("2nd","2nd.webp")
+ k.loadSprite("3rd","3rd.png")
+ k.loadSprite("4th","4th.png")
+ k.loadSprite("5th","5th.webp")
+ k.loadSprite("sixth","sixth.png")
+ k.loadSprite("upsc","upsc.jpg")
+ k.loadSprite("7th","7th.jpeg")
+ k.loadSprite("8th","8th.png")
 
  //background music
 const backgroundMusic=play("backsnd", {
