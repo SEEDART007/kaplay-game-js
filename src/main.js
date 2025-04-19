@@ -2,6 +2,9 @@ let counter = 0;
 import kaplay from "kaplay";
 
 const k = kaplay({
+  width: 1280,
+  height: 720,
+  letterBox: true,
   background: [0, 0, 0],
   burp:true
 });
